@@ -29,10 +29,10 @@ publishing {
     repositories {
         maven {
             name = "Github"
-            url = uri("https://maven.pkg.github.com/<OWNER>/<REPO>")
+            url = uri("https://maven.pkg.github.com/test-gradle-repo/test-gradle-repo")
             credentials {
-                username = findProperty("github.username")
-                password = findProperty("github.token")
+                username = ""
+                password = ""
             }
         }
     }
