@@ -1,0 +1,39 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+sourceCompatibility = '11'
+
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+publishing {
+    publications {
+        library(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            name = "Github"
+            url = uri("https://maven.pkg.github.com/<OWNER>/<REPO>")
+            credentials {
+                username = findProperty("github.username")
+                password = findProperty("github.token")
+            }
+        }
+    }
+}
